@@ -30,9 +30,13 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-btn fab small color="pink" class="ml-3">
+            <!-- Create Session Button -->
+        <CreateSessionDialog /> 
+        <!-- 
+          <v-btn fab small color="pink" class="ml-3" v-on="on">
               <v-icon>mdi-plus</v-icon>
           </v-btn>
+        -->
         </v-toolbar>
       </v-sheet>
       <v-sheet height="48rem">
@@ -81,6 +85,8 @@
 </template>
 
 <script>
+import CreateSessionDialog from './CreateSessionDialog.vue';
+    
   export default {
     data: () => ({
       focus: (new Date()).toString(),
@@ -141,6 +147,9 @@
     },
     mounted () {
       this.$refs.calendar.checkChange()
+    },
+    components: {
+        CreateSessionDialog
     },
     methods: {
       viewDay ({ date }) {
