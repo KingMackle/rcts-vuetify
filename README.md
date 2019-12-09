@@ -1,4 +1,4 @@
-# rcts
+# Remote CPR Training System
 
 ## Project setup
 ```

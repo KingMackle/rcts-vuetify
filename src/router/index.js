@@ -1,29 +1,61 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+/**eslint disable*/
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { State } from '@/state';
 
-Vue.use(VueRouter)
+//Import pages
+const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
+const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
+const Login = () => import(/* webpackChunkName: "login" */ "@/views/Login");
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+Vue.use(VueRouter);
 
+//Add route to each page
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes: [
+    {
+      path: "/",
+      name: "fallThrough",
+      component: TrainingSessions,
+      redirect: {
+        name: 'Training Sessions'
+      }
+    },
+    {
+      path: "/TrainingSessions",
+      name: "Training Sessions",
+      component: TrainingSessions,
+      icon: "mdi-calendar-month",
+      showInNavBar: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/UserProfile",
+      name: "User Profile",
+      component: UserProfile,
+      icon: "mdi-account-box",
+      showInNavBar: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: Login
+    }
+  ]
+});
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !State.currentUser) {
+    next({ path: "/login", query: { redirect: to.fullPath } });
+  } else {
+    next();
+  }
+});
 
-export default router
+export default router;
