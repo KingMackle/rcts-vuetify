@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app v-if="state.currentUser">
       <v-list dense>
         <template v-for="tab in tabs">
-          <v-list-item :key="tab.text" link>
+          <v-list-item :key="tab.text" link @click="tab.path !== $route.path && $router.push(tab.path) ">
             <v-list-item-action>
               <v-icon>{{ tab.icon }}</v-icon>
             </v-list-item-action>

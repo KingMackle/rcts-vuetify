@@ -99,8 +99,8 @@
         {
           name: 'Another Meeting',
           details: 'Another important meeting about nothing',
-          start: '2019-01-07 10:00',
-          end: '2019-01-07 13:30',
+          start: '2019-12-07 10:00',
+          end: '2019-12-07 13:30',
           color: 'brown',
         }
       ],
