@@ -31,7 +31,7 @@
             </v-list>
           </v-menu>
             <!-- Create Session Button -->
-        <CreateSessionDialog /> 
+        <CreateSessionDialog v-on:new-session="addNewSession"/> 
         <!-- 
           <v-btn fab small color="pink" class="ml-3" v-on="on">
               <v-icon>mdi-plus</v-icon>
@@ -104,7 +104,7 @@ import CreateSessionDialog from './CreateSessionDialog.vue';
       events: [
         {
           name: 'Another Meeting',
-          details: 'Another important meeting about nothing',
+          details: 'Another important meeting about nothing, yey',
           start: '2019-12-07 10:00',
           end: '2019-12-07 13:30',
           color: 'brown',
@@ -194,6 +194,18 @@ import CreateSessionDialog from './CreateSessionDialog.vue';
           ? 'th'
           : ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][d % 10]
       },
+        addNewSession(session){
+            
+            const newEvent =  {
+                name: session.title,
+                details: session.location + ", number of participants: " + session.participants,
+                start: session.date + ' ' + session.startingTimeValue,
+                end: session.date + ' ' + session.endingTimeValue,
+                color: 'green'
+            }
+            
+            this.events = this.events = [...this.events, newEvent];
+        }
     },
   }
 </script>
