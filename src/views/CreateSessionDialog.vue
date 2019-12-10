@@ -25,7 +25,7 @@
                     </div>
                     
                     <!--Input for Session Title -->
-                    <v-text-field v-model="title" :counter="15" :rules="titleRules" label="Add a name for the session" required>
+                    <v-text-field v-model="title" :counter="15" label="Add a name for the session" required>
                     </v-text-field>
                 
                     <!--Number of participants for the session -->
@@ -33,7 +33,7 @@
                     </v-select>
                     
                     <!--Input for Session Location -->
-                    <v-text-field v-model="location" :counter="20" :rules="locationRules" label="Location" required>
+                    <v-text-field v-model="location" :counter="20" label="Location" required>
                     </v-text-field>
                     
                     <!--Time selection for the session -->
@@ -54,7 +54,6 @@
                                     <v-text-field
                                     v-model="startingTimeValue"
                                     label="Starting time"
-                                    :rules="startingTimeRules"
                                     prepend-icon=""
                                     readonly
                                     v-on="on"
@@ -84,7 +83,6 @@
                                     <v-text-field
                                     v-model="endingTimeValue"
                                     label="Ending time"
-                                    :rules="endingTimeRules"
                                     prepend-icon=""
                                     readonly
                                     v-on="on"
@@ -195,7 +193,23 @@
 
                 if(this.endingTimeValue === ''){
                     this.errors.push('Select an ending time for the session');
-                } 
+                }
+                  
+                //Check that starting time is not greater than ending time
+                if (this.startingTimeValue !== '' && this.endingTimeValue !== '') {
+                    var startTime = new Date();
+                    var endTime = new Date();
+                    
+                    var tempStartTime = this.startingTimeValue.split(":");
+                    var tempEndTime = this.endingTimeValue.split(":");
+                    
+                    startTime.setHours(parseInt(tempStartTime[0]), parseInt(tempStartTime[1]), 0);
+                    endTime.setHours(parseInt(tempEndTime[0]), parseInt(tempEndTime[1]), 0);
+                    
+                    if (startTime >= endTime){
+                        this.errors.push('Starting time cannot be greater or equal than ending time');
+                    }
+                }
 
                 if(this.date === ''){
                     this.errors.push('Select a date for the session');
