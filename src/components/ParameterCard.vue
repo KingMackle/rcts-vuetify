@@ -24,7 +24,7 @@
         </v-row>
       </v-card-title>
               <v-card-text>
-      <v-sheet color="transparent">
+      <v-sheet color="transparent" height="300px" width="300px">
         <v-sparkline
           :key="String(avg)"
           :smooth="16"
@@ -48,7 +48,7 @@ export default {
     unit: String,
     isLocation: {
       type: Boolean,
-      default: false
+      default: !false
     },
     run: {
       type: Boolean,
@@ -70,7 +70,7 @@ export default {
 
       if (!sum && !length) return 0;
 
-      return Math.ceil(sum / length);
+      return parseFloat((sum / length).toFixed(1));
     }
   },
   watch: {
@@ -125,7 +125,7 @@ export default {
       });
     },
     getRandom(max, min = 0) {
-        return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
     }
   },
   created() {
