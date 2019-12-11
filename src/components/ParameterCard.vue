@@ -43,11 +43,9 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-      default: "Compression Depth"
-    },
+    name: String,
     values: Array,
+    unit: String,
     isLocation: {
       type: Boolean,
       default: false
@@ -55,8 +53,7 @@ export default {
     run: {
       type: Boolean,
       default: true
-    },
-    unit: String
+    }
   },
   data() {
     return {
@@ -90,10 +87,6 @@ export default {
     getCanvasContext() {
       if (!this.ctx) {
         this.ctx = this.$refs.canvas.getContext("2d");
-        this.ctx.translate(
-          this.$refs.canvas.width / 2,
-          this.$refs.canvas.height / 2
-        );
       }
       return this.ctx;
     },
@@ -102,37 +95,37 @@ export default {
         this.interval = setInterval(
           function() {
             let val = this.isLocation
-              ? [parseInt(Math.random() * 40), parseInt(Math.random() * 40)]
-              : parseInt(Math.random() * 10);
+              ? [this.getRandom(300, 100), this.getRandom(300, 100)]
+              : this.getRandom(10);
             this.values.push(val);
             this.values.splice(0, Math.floor(this.values.length / 21));
-            this.darwTicks();
+            if (this.isLocation) {
+                this.darwTicks();
+            }
           }.bind(this),
-          1000
+          500
         );
       }
     },
     darwTicks() {
       let context = this.getCanvasContext();
-      context.save();
-      context.setTransform(1, 0, 0, 1, 0, 0);
       context.clearRect(
         0,
         0,
         this.$refs.canvas.width,
         this.$refs.canvas.height
       );
-      // Restore the transform
-      context.restore();
-      this.values.every(function(point) {
+      this.values.forEach(function(point) {
         //ctx.translate(canvas.width/4, canvas.height/4);
         context.beginPath();
         context.arc(point[0], point[1], 5, 0, 2 * Math.PI, false);
         context.fillStyle = "red";
         context.fill();
         context.closePath();
-        return true;
       });
+    },
+    getRandom(max, min = 0) {
+        return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
     }
   },
   created() {
