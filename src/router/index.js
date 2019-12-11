@@ -7,6 +7,7 @@ import { State } from '@/state';
 const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
 const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
 const Login = () => import(/* webpackChunkName: "login" */ "@/views/Login");
+const ParameterCard = () => import(/* webpackChunkName: "ParameterCard" */ "@/components/ParameterCard");
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,13 @@ const router = new VueRouter({
       path: "/login",
       name: "Login",
       component: Login
+    },
+    {
+        path: "/parameterCard",
+        name: "Parameter Card",
+        component: ParameterCard,
+        icon: "mdi-calendar-month",
+        showInNavBar: true,
     }
   ]
 });

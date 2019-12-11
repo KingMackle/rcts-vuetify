@@ -1,5 +1,13 @@
 export const State = {
-    currentUser: undefined,
+    currentUser: {
+        name: "test",
+        email: "test",
+        password: "test",
+        id: "test",
+        location: "Ontario, Canada",
+        experienceLevel: "Senior",
+        type: "trainer"
+      },
     users: [
       {
         name: "John Doe",
