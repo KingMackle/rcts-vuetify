@@ -73,6 +73,7 @@
             </v-card-text>
             <v-card-actions>
               <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="redirectToEvent">View Details</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -174,6 +175,9 @@
         }
 
         nativeEvent.stopPropagation()
+      },
+      redirectToEvent() {
+        return this.$router.push('trainingSessionDetails')
       },
       updateRange ({ start, end }) {
         // You could load events from an outside source (like database) now that we have the start and end dates on the calendar

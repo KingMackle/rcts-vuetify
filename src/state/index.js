@@ -11,15 +11,6 @@ export const State = {
         type: "trainer"
       },
       {
-        name: "Jane Doe",
-        email: "jane@gmail.com",
-        password: "1234",
-        id: "efgh",
-        location: "Ontario, Canada",
-        educationBackground: "Software Engineer",
-        type: "trainee"
-      },
-      {
         name: "test",
         email: "test",
         password: "test",
@@ -28,6 +19,60 @@ export const State = {
         experienceLevel: "Senior",
         type: "trainer"
       },
+      {
+        name: "Jane Doe",
+        email: "jane@gmail.com",
+        password: "1234",
+        id: "efgh",
+        location: "Ontario, Canada",
+        educationBackground: "Software Engineering",
+        type: "trainee"
+      },
+      {
+        name: "Hanane Zlitni",
+        email: "hanane@gmail.com",
+        password: "1234",
+        id: "ijkl",
+        location: "Ontario, Canada",
+        educationBackground: "Software Engineering",
+        type: "trainee"
+      },
+      {
+        name: "Diego Monteverde Suàrez",
+        email: "diego@gmail.com",
+        password: "1234",
+        id: "mnop",
+        location: "Ontario, Canada",
+        educationBackground: "Medicine",
+        type: "trainee"
+      },
+      {
+        name: "Mahmoud Mahmoud",
+        email: "mahmoud@gmail.com",
+        password: "1234",
+        id: "qrst",
+        location: "Ontario, Canada",
+        educationBackground: "Computer Science",
+        type: "trainee"
+      },
+      {
+        name: "Joe Doe",
+        email: "joe@gmail.com",
+        password: "1234",
+        id: "uvwx",
+        location: "Ontario, Canada",
+        educationBackground: "Law",
+        type: "trainee"
+      },
+      {
+        name: "Trainee",
+        email: "trainee@gmail.com",
+        password: "1234",
+        id: "yzab",
+        location: "California, USA",
+        educationBackground: "Chemistry",
+        type: "trainee"
+      }
     ],
     dataSamples: [
         {
