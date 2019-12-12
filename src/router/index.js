@@ -7,6 +7,8 @@ import { State } from '@/state';
 const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
 const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
 const Login = () => import(/* webpackChunkName: "login" */ "@/views/Login");
+const TrainingSessionDetails = () => import(/* webpackChunkName: "login" */ "@/views/TrainingSessionDetails");
+
 
 Vue.use(VueRouter);
 
@@ -47,6 +49,14 @@ const router = new VueRouter({
       path: "/login",
       name: "Login",
       component: Login
+    },
+    {
+      path: "/trainingSessionDetails",
+      name: "Training Session Details",
+      component: TrainingSessionDetails,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });
