@@ -1,18 +1,87 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
-        <span>{{$options.name}}</span>
-    </v-row>
-  </v-container>
+    <v-container class="container">
+          <v-avatar id="v-avatar">
+            <span id= "headline" class="white--text headline"></span>
+          </v-avatar>
+          <br><br>
+          <v-text-field
+            class="v-text-field"
+            v-model="form.name"
+            label="Name"
+            readonly>
+          </v-text-field>
+          <v-text-field
+            v-model="form.email"
+            label="Email"
+            readonly>
+          </v-text-field>
+          <v-text-field
+            v-model="form.id"
+            label="ID"
+            readonly>
+          </v-text-field>
+          <v-text-field
+            v-model="form.location"
+            label="Location"
+            readonly>
+          </v-text-field>
+          <v-text-field
+            v-if="currentUser.type === 'trainer'"
+            v-model="currentUser.experienceLevel"
+            label="Experience Level"
+            readonly>
+          </v-text-field>
+          <v-text-field
+            v-if="currentUser.type === 'trainee'"
+            v-model="currentUser.educationBackground"
+            label="Education Background"
+            readonly>
+          </v-text-field>
+    </v-container>
 </template>
 
-<script>
-//import { State } from "@/state";
-export default {
-  name: "User Profile"
-};
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+  }
+  .v-text-field {
+    width: 40%;
+    max-width: 100%;
+  }
 </style>
+
+<script>
+  import { State } from "@/state";
+  export default {
+    pageTitle: 'User Profile',
+    data () {
+      return {
+        currentUser: State.currentUser[0],
+        form: {
+            name: State.currentUser[0].name,
+            email: State.currentUser[0].email,
+            id: State.currentUser[0].id,
+            location: State.currentUser[0].location
+        },
+      }
+    },
+    mounted() {
+      document.getElementById('v-avatar').setAttribute('style', 'background-color:' + this.randomColor() + '; width: 96px; height: 96px;')
+      document.getElementById('headline').innerHTML = this.getInitials()
+    },
+    methods: {
+      randomColor() {
+        let colors = ['000000','3C00E0','0069c0','cddc39', 'f57f17', '4dd0e1', 'ff3d00', '546e7a', 'ff4081', 'ea80fc', '9c27b0', 'f50057', '3F51B5',
+        '795548', 'FF5722', 'FBC02D', 'FFA000', 'FFEB3B']
+
+        return '#' + colors[Math.floor(Math.random() * colors.length)];
+      },
+      getInitials() {
+        return this.currentUser.name.replace(/[^a-zA-Z- ]/g, "").match(/\b\w/g).join('').toUpperCase()
+      }
+    } 
+  }
+</script>
