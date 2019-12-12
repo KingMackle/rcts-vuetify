@@ -7,7 +7,7 @@
         </v-row>
       </v-card-title>
       <v-card-text>
-          <v-sheet>
+          <v-sheet color="transparent">
           <canvas id="canvas" ref="canvas" width="400px" height="400px"></canvas>
         </v-sheet>
       </v-card-text>
@@ -26,13 +26,14 @@
               <v-card-text>
       <v-sheet color="transparent">
         <v-sparkline
-          :key="String(avg)"
-          :smooth="16"
           :gradient="gradient"
           :line-width="1"
           :value="values"
           stroke-linecap="round"
+          :smooth=4
+          :padding="5"
         ></v-sparkline>
+          <!-- :show-labels=true -->
       </v-sheet>
             </v-card-text>
 
@@ -60,7 +61,8 @@ export default {
     return {
       gradient: ["#f72047", "#ffd200", "#1feaea"],
       interval: undefined,
-      ctx: undefined
+      ctx: undefined,
+      numberOfDataPoints: 10
     };
   },
 
@@ -99,7 +101,7 @@ export default {
               ? [this.getRandom(300, 100), this.getRandom(300, 100)]
               : this.getRandom(10);
             this.values.push(val);
-            this.values.splice(0, Math.floor(this.values.length / 21));
+            this.values.splice(0, Math.floor(this.values.length / this.numberOfDataPoints));
             if (this.isLocation) {
                 this.darwTicks();
             }
@@ -126,7 +128,7 @@ export default {
       });
     },
     getRandom(max, min = 0) {
-        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+        return parseFloat((Math.random() * (max - min) + min).toFixed(1));
     }
   },
   created() {
