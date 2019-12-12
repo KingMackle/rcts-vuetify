@@ -77,7 +77,7 @@ export default {
     }
   },
   watch: {
-    run: function(newVal, oldVal) {
+    run: function(newVal) {
       if (newVal === false) {
         clearInterval(this.interval);
         this.interval = undefined;
