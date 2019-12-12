@@ -1,14 +1,14 @@
 /**eslint disable*/
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { State } from '@/state';
+import { State } from "@/state";
 
 //Import pages
-const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
-const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
 const Login = () => import(/* webpackChunkName: "login" */ "@/views/Login");
-const TrainingSessionDetails = () => import(/* webpackChunkName: "login" */ "@/views/TrainingSessionDetails");
-
+const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
+const PerformanceData = () => import(/* webpackChunkName: "PerformanceData" */ "@/views/PerformanceData");
+const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
+const TrainingSessionDetails = () => import(/* webpackChunkName: "TrainingSessionDetails" */ "@/views/TrainingSessionDetails");
 
 Vue.use(VueRouter);
 
@@ -22,7 +22,7 @@ const router = new VueRouter({
       name: "fallThrough",
       component: TrainingSessions,
       redirect: {
-        name: 'Training Sessions'
+        name: "Training Sessions"
       }
     },
     {
@@ -54,6 +54,14 @@ const router = new VueRouter({
       path: "/trainingSessionDetails",
       name: "Training Session Details",
       component: TrainingSessionDetails,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/performanceData",
+      name: "Performance Data",
+      component: PerformanceData,
       meta: {
         requiresAuth: true
       }

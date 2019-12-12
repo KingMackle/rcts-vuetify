@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app v-if="state.currentUser">
       <v-list dense>
         <template v-for="tab in tabs">
-          <v-list-item :key="tab.text" link @click="tab.path !== $route.path && $router.push(tab.path) ">
+          <v-list-item :key="tab.text" link @click="tab.path !== $route.path && $router.push(tab.path)">
             <v-list-item-action>
               <v-icon>{{ tab.icon }}</v-icon>
             </v-list-item-action>
@@ -44,13 +44,9 @@
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld";
 import { State } from "@/state";
 
 export default {
-  components: {
-    HelloWorld
-  },
   data: () => ({
     dialog: false,
     drawer: null
@@ -87,5 +83,9 @@ export default {
 <style>
 html {
   overflow-y: auto !important;
+}
+
+.row {
+    margin-right: 0px !important;
 }
 </style>

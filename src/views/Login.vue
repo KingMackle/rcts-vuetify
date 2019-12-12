@@ -76,8 +76,8 @@ export default {
             return user.email === this.email && user.password === this.password;
           }.bind(this)
         );
-        if (currentUser.length > 0) {
-          State.currentUser = currentUser;
+        if (currentUser.length === 1) {
+          State.currentUser = currentUser[0];
           this.isValidUser = true;
           this.$router.push(this.$route.query.redirect);
         } else {
