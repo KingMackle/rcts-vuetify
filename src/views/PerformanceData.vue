@@ -2,10 +2,10 @@
   <v-container class="grey lighten-5">
     <v-row justify="end">
       <v-col lg="2" md="4" sm="12" class="py-0">
-        <v-btn id="pushBtn" color="success" class="mx-2">
+        <v-btn id="pushBtn" color="success" class="mx-2" @click="pass">
           <v-icon left>mdi-check</v-icon>Pass
         </v-btn>
-        <v-btn color="error">
+        <v-btn color="error" @click="fail">
           <v-icon left>mdi-close</v-icon>Fail
         </v-btn>
       </v-col>
@@ -31,7 +31,7 @@
 <script>
 import ParameterCard from "@/components/ParameterCard";
 export default {
-  name: "Trainee",
+  name: "PerformanceData",
   components: {
     ParameterCard
   },
@@ -63,12 +63,17 @@ export default {
         };
       }
     }
+  },
+  methods: {
+    pass() {
+      this.$router.back();
+    },
+    fail() {
+      this.$router.back();
+    }
   }
 };
 </script>
 
 <style scoped>
-.pushbtn {
-
-}
 </style>

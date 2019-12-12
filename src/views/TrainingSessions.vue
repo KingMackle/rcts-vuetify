@@ -31,8 +31,8 @@
             </v-list>
           </v-menu>
             <!-- Create Session Button -->
-        <CreateSessionDialog v-on:new-session="addNewSession"/> 
-        <!-- 
+        <CreateSessionDialog v-on:new-session="addNewSession"/>
+        <!--
           <v-btn fab small color="pink" class="ml-3" v-on="on">
               <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -60,23 +60,23 @@
           offset-x>
           <v-card color="grey lighten-4" min-width="350px" flat>
             <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
+              <!-- <v-btn icon>
                 <v-icon>mdi-pencil</v-icon>
-              </v-btn>
+              </v-btn> -->
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-              <v-spacer></v-spacer>
+              <!-- <v-spacer></v-spacer>
               <v-btn icon>
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
               <v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
+              </v-btn> -->
             </v-toolbar>
             <v-card-text>
               <span v-html="selectedEvent.details"></span>
             </v-card-text>
             <v-card-actions>
-              <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
+              <!-- <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn> -->
               <v-btn text color="primary" @click="redirectToEvent">View Details</v-btn>
             </v-card-actions>
           </v-card>
@@ -103,15 +103,7 @@ export default {
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
-      events: [
-        {
-          name: 'Another Meeting',
-          details: 'Another important meeting about nothing, yey',
-          start: '2019-12-07 10:00',
-          end: '2019-12-07 13:30',
-          color: 'brown',
-        }
-      ],
+      events: State.sessions,
     }),
     computed: {
       title () {
@@ -187,9 +179,9 @@ export default {
         nativeEvent.stopPropagation()
       },
       redirectToEvent() {
-        if(State.currentUser[0].type === 'trainer') {
-          return this.$router.push('trainingSessionDetails')
-        } 
+        if(State.currentUser.type === 'trainer') {
+          return this.$router.push('trainingSessionDetails');
+        }
       },
       updateRange ({ start, end }) {
         // You could load events from an outside source (like database) now that we have the start and end dates on the calendar
@@ -202,7 +194,7 @@ export default {
           : ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][d % 10]
       },
         addNewSession(session){
-            
+
             const newEvent =  {
                 name: session.title,
                 details: session.location + ", number of participants: " + session.participants,
@@ -210,7 +202,7 @@ export default {
                 end: session.date + ' ' + session.endingTimeValue,
                 color: 'green'
             }
-            
+
             this.events = this.events = [...this.events, newEvent];
         }
     },

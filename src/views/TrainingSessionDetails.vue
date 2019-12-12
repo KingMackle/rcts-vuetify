@@ -4,10 +4,9 @@
             <h1 class="enrolled-trainees__title">Enrolled Trainees</h1>
                 <div id="trainee-cards" class="enrolled-trainees__cards">
                     <v-card
-                        v-for="trainee in trainees[0]" v-bind:key="trainee.names"
+                        v-for="trainee in trainees" :key="trainee.name"
                         class="mx-auto enrolled-trainees__card"
-                        max-width="344"
-                    >
+                        max-width="344">
                         <v-list-item three-line>
                             <v-list-item-content>
                                 <div class="overline mb-4">Trainee Information</div>
@@ -19,10 +18,10 @@
                         <p v-if="trainee.performance === 'good'" class="performance-status good-performance">Good performance</p>
                         <p v-if="trainee.performance === 'bad'" class="performance-status bad-performance">Bad performance</p>
                         <v-card-actions>
-                            <v-btn color="orange" text>View Performance Data</v-btn>
+                            <v-btn color="orange" @click="viewPerformanceData" text>View Performance Data</v-btn>
                         </v-card-actions>
                     </v-card>
-                </div> 
+                </div>
         </section>
     </v-layout>
 </template>
@@ -71,12 +70,17 @@
     export default {
         data() {
             return {
-                trainees: []
             }
         },
-        mounted() {
-            this.trainees.push(State.users.filter(user => user.type === 'trainee'))
-            console.log(this.trainees)   
+        computed: {
+            trainees: function () {
+                return State.users.filter(user => user.type === 'trainee');
+            }
+        },
+        methods: {
+            viewPerformanceData () {
+                this.$router.push('performanceData');
+            }
         }
     }
 </script>

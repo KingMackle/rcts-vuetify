@@ -1,7 +1,7 @@
 <template>
     <v-container class="container">
-          <v-avatar id="v-avatar">
-            <span id= "headline" class="white--text headline"></span>
+          <v-avatar id="v-avatar" :color="randomColor()">
+            <span id= "headline" class="white--text headline">{{initials}}</span>
           </v-avatar>
           <br><br>
           <v-text-field
@@ -51,6 +51,10 @@
     width: 40%;
     max-width: 100%;
   }
+  .v-avatar {
+        width: 96px !important;
+        height: 96px !important;
+  }
 </style>
 
 <script>
@@ -59,18 +63,19 @@
     pageTitle: 'User Profile',
     data () {
       return {
-        currentUser: State.currentUser[0],
+        currentUser: State.currentUser,
         form: {
-            name: State.currentUser[0].name,
-            email: State.currentUser[0].email,
-            id: State.currentUser[0].id,
-            location: State.currentUser[0].location
+            name: State.currentUser.name,
+            email: State.currentUser.email,
+            id: State.currentUser.id,
+            location: State.currentUser.location
         },
       }
     },
-    mounted() {
-      document.getElementById('v-avatar').setAttribute('style', 'background-color:' + this.randomColor() + '; width: 96px; height: 96px;')
-      document.getElementById('headline').innerHTML = this.getInitials()
+    computed: {
+        initials: function () {
+            return this.currentUser.name.replace(/[^a-zA-Z- ]/g, "").match(/\b\w/g).join('').toUpperCase();
+        }
     },
     methods: {
       randomColor() {
@@ -78,10 +83,7 @@
         '795548', 'FF5722', 'FBC02D', 'FFA000', 'FFEB3B']
 
         return '#' + colors[Math.floor(Math.random() * colors.length)];
-      },
-      getInitials() {
-        return this.currentUser.name.replace(/[^a-zA-Z- ]/g, "").match(/\b\w/g).join('').toUpperCase()
       }
-    } 
+    }
   }
 </script>
