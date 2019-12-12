@@ -26,7 +26,8 @@ export const State = {
         id: "efgh",
         location: "Ontario, Canada",
         educationBackground: "Software Engineering",
-        type: "trainee"
+        type: "trainee",
+        performance: "good"
       },
       {
         name: "Hanane Zlitni",
@@ -35,7 +36,8 @@ export const State = {
         id: "ijkl",
         location: "Ontario, Canada",
         educationBackground: "Software Engineering",
-        type: "trainee"
+        type: "trainee",
+        performance: "good"
       },
       {
         name: "Diego Monteverde Suàrez",
@@ -44,7 +46,8 @@ export const State = {
         id: "mnop",
         location: "Ontario, Canada",
         educationBackground: "Medicine",
-        type: "trainee"
+        type: "trainee",
+        performance: "bad"
       },
       {
         name: "Mahmoud Mahmoud",
@@ -53,7 +56,8 @@ export const State = {
         id: "qrst",
         location: "Ontario, Canada",
         educationBackground: "Computer Science",
-        type: "trainee"
+        type: "trainee",
+        performance: "bad"
       },
       {
         name: "Joe Doe",
@@ -62,7 +66,8 @@ export const State = {
         id: "uvwx",
         location: "Ontario, Canada",
         educationBackground: "Law",
-        type: "trainee"
+        type: "trainee",
+        performance: "bad"
       },
       {
         name: "Trainee",
@@ -71,7 +76,8 @@ export const State = {
         id: "yzab",
         location: "California, USA",
         educationBackground: "Chemistry",
-        type: "trainee"
+        type: "trainee",
+        performance: "good"
       }
     ],
     dataSamples: [

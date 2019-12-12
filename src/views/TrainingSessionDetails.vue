@@ -16,6 +16,8 @@
                                 <v-card-text class="text--primary">{{ trainee.location }}</v-card-text>
                             </v-list-item-content>
                         </v-list-item>
+                        <p v-if="trainee.performance === 'good'" class="performance-status good-performance">Good performance</p>
+                        <p v-if="trainee.performance === 'bad'" class="performance-status bad-performance">Bad performance</p>
                         <v-card-actions>
                             <v-btn color="orange" text>View Performance Data</v-btn>
                         </v-card-actions>
@@ -42,6 +44,24 @@
     }
     .enrolled-trainees__card:hover {
         transform: scale(1.03)
+    }
+    .performance-status {
+        display: block;
+        width: 40%;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 0.8em;
+        font-weight: 500;
+        margin: 0.5em 1.5em;
+    }
+    .good-performance {
+        border: 2px solid #26A69A;
+        color: #26A69A;
+    }
+    .bad-performance {
+        border: 2px solid #EF5350;
+        color: #EF5350;
     }
 </style>
 

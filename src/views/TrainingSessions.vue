@@ -82,6 +82,8 @@
 </template>
 
 <script>
+  import { State } from '@/state'
+
   export default {
     data: () => ({
       focus: (new Date()).toString(),
@@ -177,7 +179,9 @@
         nativeEvent.stopPropagation()
       },
       redirectToEvent() {
-        return this.$router.push('trainingSessionDetails')
+        if(State.currentUser[0].type === 'trainer') {
+          return this.$router.push('trainingSessionDetails')
+        } 
       },
       updateRange ({ start, end }) {
         // You could load events from an outside source (like database) now that we have the start and end dates on the calendar
