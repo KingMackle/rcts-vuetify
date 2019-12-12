@@ -24,7 +24,7 @@
         </v-row>
       </v-card-title>
               <v-card-text>
-      <v-sheet color="transparent" height="300px" width="300px">
+      <v-sheet color="transparent">
         <v-sparkline
           :key="String(avg)"
           :smooth="16"
@@ -42,6 +42,7 @@
 
 <script>
 export default {
+    name: "ParameterCard",
   props: {
     name: String,
     values: Array,
@@ -103,7 +104,7 @@ export default {
                 this.darwTicks();
             }
           }.bind(this),
-          500
+          1000
         );
       }
     },
