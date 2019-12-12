@@ -30,9 +30,13 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-btn fab small color="pink" class="ml-3">
+            <!-- Create Session Button -->
+        <CreateSessionDialog v-on:new-session="addNewSession"/> 
+        <!-- 
+          <v-btn fab small color="pink" class="ml-3" v-on="on">
               <v-icon>mdi-plus</v-icon>
           </v-btn>
+        -->
         </v-toolbar>
       </v-sheet>
       <v-sheet height="48rem">
@@ -73,6 +77,7 @@
             </v-card-text>
             <v-card-actions>
               <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="redirectToEvent">View Details</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -81,7 +86,10 @@
 </template>
 
 <script>
-  export default {
+import { State } from '@/state'
+import CreateSessionDialog from './CreateSessionDialog.vue';
+
+export default {
     data: () => ({
       focus: (new Date()).toString(),
       type: 'month',
@@ -98,7 +106,7 @@
       events: [
         {
           name: 'Another Meeting',
-          details: 'Another important meeting about nothing',
+          details: 'Another important meeting about nothing, yey',
           start: '2019-12-07 10:00',
           end: '2019-12-07 13:30',
           color: 'brown',
@@ -142,6 +150,9 @@
     mounted () {
       this.$refs.calendar.checkChange()
     },
+    components: {
+        CreateSessionDialog
+    },
     methods: {
       viewDay ({ date }) {
         this.focus = date
@@ -175,6 +186,11 @@
 
         nativeEvent.stopPropagation()
       },
+      redirectToEvent() {
+        if(State.currentUser[0].type === 'trainer') {
+          return this.$router.push('trainingSessionDetails')
+        } 
+      },
       updateRange ({ start, end }) {
         // You could load events from an outside source (like database) now that we have the start and end dates on the calendar
         this.start = start
@@ -185,6 +201,18 @@
           ? 'th'
           : ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][d % 10]
       },
+        addNewSession(session){
+            
+            const newEvent =  {
+                name: session.title,
+                details: session.location + ", number of participants: " + session.participants,
+                start: session.date + ' ' + session.startingTimeValue,
+                end: session.date + ' ' + session.endingTimeValue,
+                color: 'green'
+            }
+            
+            this.events = this.events = [...this.events, newEvent];
+        }
     },
   }
 </script>

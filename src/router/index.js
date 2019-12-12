@@ -7,7 +7,8 @@ import { State } from '@/state';
 const TrainingSessions = () => import(/* webpackChunkName: "TrainingSessions" */ "@/views/TrainingSessions");
 const UserProfile = () => import(/* webpackChunkName: "UserProfile" */ "@/views/UserProfile");
 const Login = () => import(/* webpackChunkName: "login" */ "@/views/Login");
-const Trainee = () => import(/* webpackChunkName: "Trainee" */ "@/views/Trainee");
+const TrainingSessionDetails = () => import(/* webpackChunkName: "login" */ "@/views/TrainingSessionDetails");
+
 
 Vue.use(VueRouter);
 
@@ -50,11 +51,12 @@ const router = new VueRouter({
       component: Login
     },
     {
-        path: "/Trainee",
-        name: "Trainee",
-        component: Trainee,
-        icon: "mdi-calendar-month",
-        showInNavBar: true,
+      path: "/trainingSessionDetails",
+      name: "Training Session Details",
+      component: TrainingSessionDetails,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });
