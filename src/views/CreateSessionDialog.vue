@@ -9,7 +9,7 @@
 
             <v-card>
                 <v-card-title class="headline blue dark" primary-title>
-                    Create training session
+                    Create Training Session
                 </v-card-title>
                 <v-divider></v-divider>
                 
@@ -17,7 +17,7 @@
                     
                     <div v-if="errors.length">
                         <p>
-                            <b>Please add the following information:</b>
+                            <b>Please fill out the following form:</b>
                         </p>
                         <ul>
                             <li class="error-item" v-for="error in errors" :key="error">{{ error }}</li>
@@ -25,15 +25,15 @@
                     </div>
                     
                     <!--Input for Session Title -->
-                    <v-text-field v-model="title" :counter="15" label="Add a name for the session" required>
+                    <v-text-field v-model="title" :counter="15" label="Session name" prepend-icon="mdi-pencil-outline" required>
                     </v-text-field>
                 
                     <!--Number of participants for the session -->
-                    <v-select class="participants" :items="participantsValues" v-model="participants"  label="Number of participants" solo> 
+                    <v-select class="participants" :items="participantsValues" v-model="participants"  label="Number of participants" prepend-icon="mdi-account-group" solo> 
                     </v-select>
                     
                     <!--Input for Session Location -->
-                    <v-text-field v-model="location" :counter="20" label="Location" required>
+                    <v-text-field v-model="location" :counter="20" label="Location" prepend-icon="mdi-map-marker" required>
                     </v-text-field>
                     
                     <!--Time selection for the session -->
@@ -53,8 +53,8 @@
                                 <template v-slot:activator="{ on }">
                                     <v-text-field
                                     v-model="startingTimeValue"
-                                    label="Starting time"
-                                    prepend-icon=""
+                                    label="Start time"
+                                    prepend-icon="mdi-clock-outline"
                                     readonly
                                     v-on="on"
                                     ></v-text-field>
@@ -82,8 +82,8 @@
                                 <template v-slot:activator="{ on }">
                                     <v-text-field
                                     v-model="endingTimeValue"
-                                    label="Ending time"
-                                    prepend-icon=""
+                                    label="End time"
+                                    prepend-icon="mdi-clock-outline"
                                     readonly
                                     v-on="on"
                                     ></v-text-field>
@@ -110,7 +110,7 @@
                           <v-text-field
                             v-model="date"
                             label="Session date"
-                            prepend-icon=""
+                            prepend-icon="mdi-calendar-range"
                             readonly
                             v-on="on">
                             </v-text-field>
