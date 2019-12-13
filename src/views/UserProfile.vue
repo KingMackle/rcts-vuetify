@@ -8,33 +8,39 @@
             class="v-text-field"
             v-model="form.name"
             label="Name"
+            prepend-icon="mdi-pencil-outline"
             readonly>
           </v-text-field>
           <v-text-field
             v-model="form.email"
             label="Email"
+            prepend-icon="mdi-email"
             readonly>
           </v-text-field>
           <v-text-field
             v-model="form.id"
             label="ID"
+            prepend-icon="mdi-account-card-details"
             readonly>
           </v-text-field>
           <v-text-field
             v-model="form.location"
             label="Location"
+            prepend-icon="mdi-map-marker"
             readonly>
           </v-text-field>
           <v-text-field
             v-if="currentUser.type === 'trainer'"
             v-model="currentUser.experienceLevel"
             label="Experience Level"
+            prepend-icon="mdi-briefcase"
             readonly>
           </v-text-field>
           <v-text-field
             v-if="currentUser.type === 'trainee'"
             v-model="currentUser.educationBackground"
             label="Education Background"
+            prepend-icon="mdi-school"
             readonly>
           </v-text-field>
     </v-container>
