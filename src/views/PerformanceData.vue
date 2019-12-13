@@ -1,6 +1,6 @@
 <template>
   <v-container class="grey lighten-5">
-    <v-row justify="end">
+    <v-row v-if="currentUser.type === 'trainer'" justify="end">
       <v-col lg="12" md="12" sm="12" class="py-0">
         <v-btn id="pushBtn" color="success" class="mx-2" @click="pass">
           <v-icon left>mdi-check</v-icon>Pass
@@ -29,11 +29,17 @@
 </template>
 
 <script>
+import { State } from "@/state";
 import ParameterCard from "@/components/ParameterCard";
 export default {
   name: "PerformanceData",
   components: {
     ParameterCard
+  },
+  data () {
+    return {
+      currentUser: State.currentUser
+    }
   },
   props: {
     parameters: {
@@ -41,9 +47,9 @@ export default {
       default: function() {
         return {
           cp: {
-            name: "Compression Pressure",
+            name: "Compression Rate",
             values: [],
-            unit: "cm"
+            unit: "cpm"
           },
           cd: {
             name: "Compression Depth",

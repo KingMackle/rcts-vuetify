@@ -100,6 +100,9 @@ export default {
             let val = this.isLocation
               ? [this.getRandom(300, 100), this.getRandom(300, 100)]
               : this.getRandom(10);
+              if (this.unit === 'cpm') {
+                val = this.getRandom(125, 95)
+              }
             this.values.push(val);
             this.values.splice(0, Math.floor(this.values.length / this.numberOfDataPoints));
             if (this.isLocation) {
