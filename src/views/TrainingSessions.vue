@@ -183,6 +183,8 @@ export default {
       redirectToEvent() {
         if(State.currentUser.type === 'trainer') {
           return this.$router.push('trainingSessionDetails');
+        } else {
+          return this.$router.push('performanceData');
         }
       },
       updateRange ({ start, end }) {
