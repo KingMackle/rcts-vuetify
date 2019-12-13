@@ -31,7 +31,8 @@
             </v-list>
           </v-menu>
             <!-- Create Session Button -->
-        <CreateSessionDialog v-on:new-session="addNewSession"/>
+            <CreateSessionDialog v-if="currentUser.type === 'trainer'" v-on:new-session="addNewSession"/>
+            
         <!--
           <v-btn fab small color="pink" class="ml-3" v-on="on">
               <v-icon>mdi-plus</v-icon>
@@ -104,6 +105,7 @@ export default {
       selectedElement: null,
       selectedOpen: false,
       events: State.sessions,
+      currentUser: State.currentUser
     }),
     computed: {
       title () {
