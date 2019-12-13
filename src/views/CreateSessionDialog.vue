@@ -12,9 +12,9 @@
                     Create Training Session
                 </v-card-title>
                 <v-divider></v-divider>
-                
+
                 <v-form class="create-session-form" @submit="sendNewTrainingSessionData" ref="form" v-model="valid">
-                    
+
                     <div v-if="errors.length">
                         <p>
                             <b>Please fill out the following form:</b>
@@ -23,19 +23,19 @@
                             <li class="error-item" v-for="error in errors" :key="error">{{ error }}</li>
                         </ul>
                     </div>
-                    
+
                     <!--Input for Session Title -->
                     <v-text-field v-model="title" :counter="15" label="Session name" prepend-icon="mdi-pencil-outline" required>
                     </v-text-field>
-                
+
                     <!--Number of participants for the session -->
                     <v-select class="participants" :items="participantsValues" v-model="participants"  label="Number of participants" prepend-icon="mdi-account-group" solo> 
                     </v-select>
-                    
+
                     <!--Input for Session Location -->
                     <v-text-field v-model="location" :counter="20" label="Location" prepend-icon="mdi-map-marker" required>
                     </v-text-field>
-                    
+
                     <!--Time selection for the session -->
                     <v-row>
                         <v-col cols="11" sm="5">
@@ -96,7 +96,7 @@
                             </v-menu>
                         </v-col>
                     </v-row>
-                    
+
                     <!--Date Picker -->
                     <v-menu
                     ref="datePickerMenu"
@@ -122,7 +122,7 @@
                         </v-date-picker>
                     </v-menu>
                 </v-form>
-                
+
                 <!--Create Session Button -->
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -152,7 +152,7 @@
             startingTimeMenu: false,
             endingTimeMenu: false,
             datePickerMenu: false,
-            
+
             valid: false,
             titleRules: [
                 v => !!v || 'A name for the session is required',
@@ -172,16 +172,16 @@
         methods: {
               sendNewTrainingSessionData(e) {
                   e.preventDefault();
-                  
+
                   this.errors = [];
 
                 if (this.title === '') {
                     this.errors.push('Add a title for the session');
-                } 
+                }
 
                 if (this.participants === '') {
                     this.errors.push('Select a number of participants for the session');
-                } 
+                }
 
                 if (this.location === '') {
                     this.errors.push('Select a remote location for the session');
@@ -194,18 +194,18 @@
                 if(this.endingTimeValue === ''){
                     this.errors.push('Select an ending time for the session');
                 }
-                  
+
                 //Check that starting time is not greater than ending time
                 if (this.startingTimeValue !== '' && this.endingTimeValue !== '') {
                     var startTime = new Date();
                     var endTime = new Date();
-                    
+
                     var tempStartTime = this.startingTimeValue.split(":");
                     var tempEndTime = this.endingTimeValue.split(":");
-                    
+
                     startTime.setHours(parseInt(tempStartTime[0]), parseInt(tempStartTime[1]), 0);
                     endTime.setHours(parseInt(tempEndTime[0]), parseInt(tempEndTime[1]), 0);
-                    
+
                     if (startTime >= endTime){
                         this.errors.push('Starting time cannot be greater or equal than ending time');
                     }
@@ -224,20 +224,19 @@
                           endingTimeValue: this.endingTimeValue,
                           date: this.date
                     }
-                    console.log(newSession)
                     this.$emit('new-session', newSession);
-                    
+
                     this.title = '';
                     this.participants = '';
                     this.location = '';
                     this.startingTimeValue = '';
                     this.endingTimeValue = '';
                     this.date = '';
-                    
+
                     this.dialog = false;
                 }
             }
-            
+
         }
     }
 </script>
@@ -256,4 +255,4 @@
         text-align: left;
         color: brown;
     }
-</style> 
+</style>
